@@ -17,7 +17,7 @@ p {
     margin: 0;
 }
 
-.title {
+.navbar {
     background-color:#2d2d2d;
     color :white;
     display: flex;
@@ -30,13 +30,13 @@ p {
     margin-bottom: 8%;
 }
 
-.title .left {
+.navbar .left {
     font-size: 1.5em;
     font-weight: 500;
     width: 40%;
     font-family: 'Poppins';
 }
-.title .right {
+.navbar .right {
     font-size: 1.25em;
     width: 40%;
     display: flex;
