@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
+@import url(../navstyle.css);
 * {
     box-sizing: border-box;
 }
@@ -15,33 +15,6 @@ body{
 p {
     padding: 0;
     margin: 0;
-}
-
-.navbar {
-    background-color:#2d2d2d;
-    color :white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    padding-left: 2%;
-    padding-right: 2%;
-    box-shadow: 0 5px 10px #2d2d2d;
-    margin-bottom: 8%;
-}
-
-.navbar .left {
-    font-size: 1.5em;
-    font-weight: 500;
-    width: 40%;
-    font-family: 'Poppins';
-}
-.navbar .right {
-    font-size: 1.25em;
-    width: 40%;
-    display: flex;
-    font-family: 'Poppins';
-    justify-content: space-between;
 }
 
 .banner {
