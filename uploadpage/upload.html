@@ -6,6 +6,7 @@
     <title>Upload</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./uploadstyles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
    <div class="navbar"></div>
@@ -26,6 +27,44 @@
             </div>
             <div class="queued-images"></div>            .
         </form>
+
+        <div class="musicselect">
+            <h2>Select Music</h2>
+            <input type="file" class="selectmusic" accept="audio/*">
+        </div>
+
+        <div class="durationset">
+            <h2>Enter duration for each image:</h2>
+            <input type="number" min="1" max="30">
+        </div>
+
+        <div class="transitionoptions">
+        <h2>Select Transition Effect: </h2>
+        <select>
+            <option value="fade">Fade</option>
+            <option value="zoom">Zoom</option>
+            <option value="push">Push</option>
+        </select>
+    </div>
+
+        <div class="quality">
+            <h2>Resolution:</h2>
+            <select>                
+                <option value="720p">1280x720</option>
+                <option value="1080p">1920x1080</option>
+                <option value="1440p">2560x1440</option>
+            </select>
+        </div>
+
+        <div class="preview">
+            <h2>Preview:</h2>
+            <div class="video"></div>
+            <div class="buttons">
+                <i class='bx bx-pause' ></i>
+                <i class='bx bx-play'></i>
+                <i class='bx bx-rewind' ></i>
+            </div>
+        </div>
     </div>
 
     <script>

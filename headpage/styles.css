@@ -12,13 +12,14 @@ body{
     flex-direction: column;
 }
 
+
 p {
     padding: 0;
     margin: 0;
 }
 
 .banner {
-    height: 40vh;
+    height: 30vh;
     display: flex;
     justify-content: space-between;
     padding-right: 1%;
