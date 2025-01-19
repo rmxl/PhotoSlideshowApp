@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url(../css/navstyle.css);
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Or adjust as per your need */
+    margin-left: 10%
+
+    
+}
+body{
+    min-height: 100vh;
+    background-image: url("/static/img/img2.jpg");
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+table,th,td{
+    padding: 1rem;
+}
+main.table{
+    width: 82vw;
+    height: 90vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+.table_header{
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+}
+.table_body{
+    width: 95%;
+    max-height: calc(89% - .8rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow:auto;
+}
+.table_body ::-webkit-scrollbar{
+    width:0.5rem;
+    height: 0.5rem;
+
+}
+.table_body::-webkit-scrollbar-thumb{
+    border-radius: 0.5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+.table_body::-webkit-scrollbar-thumb{
+    visibility: visible;
+}
+table{
+    width: 100%;
+}
+table,th ,td{
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+table thead{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+}
+tbody tr:nth-child(even){
+    background-color: #0000000b;
+}
+tbody tr:hover{
+    background-color: #fff6;
+
+}
+.status{
+    background-color: #ff9d5c;
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+}
+@media (max-width:1000px){
+    td:not(:first-of-type){
+        min-width: 12.1rem;
+
+    }
+}

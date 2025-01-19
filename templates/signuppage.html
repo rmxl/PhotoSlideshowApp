@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="../static/css/signuppagestyles.css" rel="stylesheet">
+    <script src="../static/js/script2.js"></script>
+    <script src="https://kit.fontawesome.com/84a4d5b7f3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a href="{{ url_for('index') }}">Image Converter</a>
+        </div>
+        <div class="right">
+            <div class="redirect"><a href="{{ url_for('login') }}">Login</a></div>
+            <div class="redirect"><a href="{{ url_for('signup') }}">Sign Up</a></div>
+            <div class="redirect"><a href="{{ url_for('upload') }}">Upload</a></div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="form-wrapper signin">
+            <form action="/signup" method="POST">
+                <h2>Sign Up</h2>
+                <div class="input-group">
+                    <input type="text" name="username" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <button type="submit">Sign Up</button>
+                <div class="signup-link">
+                    <p>Already have an account? <a href="{{ url_for('login') }}" class="signup-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="message">
+            <p>{{msg}}</p>
+        </div>
+    </div>
+    <footer>
+        <div>&copy; 2024 Copyright | segmentationFault</div>
+        <div>
+            <a href="../headpage/index.html">Go to Home <i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+</body>
+
+</html>

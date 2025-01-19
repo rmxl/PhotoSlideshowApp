@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link rel="stylesheet" href="../static/css/uploadpagestyles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../static/js/uploadpagescript.js" defer></script>
+    <script src="https://kit.fontawesome.com/84a4d5b7f3.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a href="{{ url_for('index') }}">Image Converter</a>
+        </div>
+        <div class="right">
+            <div class="redirect"><a href="{{ url_for('login') }}">Login</a></div>
+            <div class="redirect"><a href="{{ url_for('signup') }}">Sign Up</a></div>
+            <div class="redirect"><a href="{{ url_for('upload') }}">Upload</a></div>
+            {% if request.cookies.get('token') %}
+            <div class="redirect"><a href="{{ url_for('logout') }}">Logout</a></div>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="main">
+        <div class="message">
+            <p></p>
+        </div>
+        <div class="header">
+            <h2>Upload</h2>
+            <div class="server-message"></div>
+        </div>
+        <form id="queued" enctype="multipart/form-data">
+            <div class="input-area">
+                <p>Drag and drop, or <span class="browse">Browse</span></p>
+                <input type="file" multiple="multiple" class="files" accept="image/png, image/jpeg, image/jpg"
+                    name="imgfiles">
+            </div>
+            <br><br>
+            <div class="header">
+                <h1>Queued Images</h1>
+                <button class="upbuttons" type="submit">Upload</button>
+            </div>
+            <div class="queued-images"></div><br><br>
+        </form>
+
+        <div class="musicselect">
+            <h2 style="font-size: 2em;">Select Music</h2>
+            <div class="checkbox-options">
+                <div class="audioparent">
+                    <div class="audioselect">
+                        <input type="checkbox" id="Flowers" name="music" value="Flowers" checked>
+                        <label for="flowers" style="font-size: 1.5em; margin-left: 10px;">Flowers</label><br>
+                    </div>
+                    <div class="durationset">
+                        <h3>Enter duration: </h3>
+                        <select>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="audioparent">
+                    <div class="audioselect" style="margin-right: -15px;">
+                        <input type="checkbox" id="Freedom" name="music" value="Freedom">
+                        <label for="freedom" style="font-size: 1.5em; margin-left: 10px;">Freedom </label><br>
+                    </div>
+                    <div class="durationset">
+                        <h3>Enter duration: </h3>
+                        <select>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="audioparent">
+                    <div class="audioselect">
+                        <input type="checkbox" id="Walking" name="music" value="Walking">
+                        <label for="walking" style="font-size: 1.5em; margin-left: 10px;">Walking</label><br>
+                    </div>
+                    <div class="durationset">
+                        <h3>Enter duration: </h3>
+                        <select>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="audioparent">
+                    <div class="audioselect">
+                        <input type="checkbox" id="Ground" name="music" value="Ground">
+                        <label for="ground" style="font-size: 1.5em; margin-left: 10px;">Ground</label><br>
+                    </div>
+                    <div class="durationset">
+                        <h3>Enter duration: </h3>
+                        <select>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="audioparent">
+                    <div class="audioselect">
+                        <input type="checkbox" id="Around" name="music" value="Around">
+                        <label for="around" style="font-size: 1.5em; margin-left: 10px;">Around</label><br>
+                    </div>
+                    <div class="durationset">
+                        <h3>Enter duration: </h3>
+                        <select>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="transitionoptions">
+                <h2>Select Transition Effect: </h2>
+                <select>
+                    <option value="fade">Fade</option>
+                    <option value="crossfadein">Cross Fade In</option>
+                    <option value="crossfadeout">Cross Fade Out</option>
+                    <option value="slidein">Slide In</option>
+                    <option value="slideout">Slide Out</option>
+                    <option value="dull">Dull</option>
+                </select>
+            </div>
+
+            <div class="quality">
+                <h2>Resolution:</h2>
+                <select>
+                    <option value="1280x720">1280x720</option>
+                    <option value="1920x1080">1920x1080</option>
+                    <option value="2560x1440">2560x1440</option>
+                </select>
+            </div>
+            <br>
+            <div class="search_div">
+                <h2 for="search_image_label">Search</h2>
+                <form action="" method="post" id="search_form" style="width: 100%;">
+                    <input type="text" id="search_form_bar" name="search_image" placeholder='  Search images by name'
+                        required style="width: 100%; height:35px; color: black;">
+                </form>
+
+                <div class="searched_images_returned"></div>
+
+            </div>
+
+            <div class="display_selected_from_search">
+                <h2>Selected Images</h2>
+                <div class="images_selected"></div>
+            </div>
+
+            <div class="duration_for_each"></div>
+
+            <br>
+            <div class="previewbuttondiv">
+                <button class="upbuttons" id="previewButton">Preview Selected Images</button>
+            </div>
+
+            <div class="preview">
+                <h2>Preview:</h2>
+                <div class="video-container">
+                    <video id="video" disableRemotePlayback
+                        src="{{ url_for('static', filename='users/' + user + '/finalvideo.mp4') }}"> </video>
+
+                    <span class=" custom-loader"></span>
+                    <div class="player-state">
+                        <span class="state-btn state-backward">
+                            <ion-icon name="play-back-outline"></ion-icon>
+                            <span class="backward-duration">5</span>
+                        </span>
+                        <span class="main-state state-btn" style="display: none;">
+                            <ion-icon name="play-outline"></ion-icon>
+                        </span>
+                        <span class="state-btn state-forward">
+                            <span class="forward-duration">5</span>
+                            <ion-icon name="play-forward-outline"></ion-icon>
+                        </span>
+                    </div>
+                    <div class="controls">
+                        <div class="duration">
+                            <div class="current-time"></div>
+                            <div class="hover-time">
+                                <span class="hover-duration"></span>
+                            </div>
+                            <div class="buffer"></div>
+                        </div>
+                        <div class="btn-controls">
+                            <div class="btn-con">
+                                <span class="play-pause control-btn">
+                                    <ion-icon name="play-outline"></ion-icon>
+                                </span>
+                                <span class="volume">
+                                    <span class="mute-unmute control-btn">
+                                        <ion-icon name="volume-high-outline"></ion-icon>
+                                    </span>
+                                    <div class="max-vol">
+                                        <div class="current-vol"></div>
+                                    </div>
+                                </span>
+                                <span class="time-container">
+                                    <span class="current-duration">0:00</span>
+                                    <span>/</span>
+                                    <span class="total-duration">0:00</span>
+                                </span>
+                            </div>
+                            <div class="right-controls">
+                                <span class="backward control-btn" title="5 backward">
+                                    <ion-icon name="play-back-outline"></ion-icon>
+                                </span>
+                                <span class="forward control-btn" title="5 forward">
+                                    <ion-icon name="play-forward-outline"></ion-icon>
+                                </span>
+                                <span class="fullscreen-btn control-btn" title="fullscreen">
+                                    <span class="full">
+                                        <ion-icon name="scan-outline"></ion-icon>
+                                    </span>
+                                    <span class="contract">
+                                        <ion-icon name="contract-outline"></ion-icon>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button class="upbuttons" id="downloadvid" style="justify-self: center; width: 10%;">Download
+                    Video</button>
+            </div>
+
+
+            <footer style="position: absolute;left: -7px;">
+                <div>&copy; 2024 Copyright | segmentationFault</div>
+                <div>
+                    <a href="../headpage/index.html">Go to Home <i class="fa-solid fa-arrow-up"></i></a>
+                </div>
+            </footer>
+            <script>
+                document.addEventListener("DOMContentLoaded", function(event) { 
+                            var scrollpos = localStorage.getItem('scrollpos');
+                            if (scrollpos) window.scrollTo(0, scrollpos);
+                        });
+
+                window.onbeforeunload = function(e) {
+                    localStorage.setItem('scrollpos', window.scrollY);
+                };
+
+                let queuedImagesArray = [];
+                let queued = document.querySelector("#queued");
+                let queuedImages = document.querySelector(".queued-images");
+                let inputArea = document.querySelector(".input-area");
+                let input = document.querySelector(".input-area input");
+                let serverMessage = document.querySelector(".server-message");
+
+                let selectImagesArray = []
+                let searchDiv = document.querySelector(".search_div")
+                let searchForm = document.querySelector("#search_form")
+                let searchFormBar = document.querySelector('#search_form_bar')
+                let displaySearchImagesDiv = document.querySelector('.searched_images_returned')
+                let displaySelectedImagesDiv = document.querySelector('.images_selected')
+                let previewButton = document.getElementById("previewButton");
+                let durationDiv = document.querySelector(".duration_for_each")
+
+                //#########################
+                input.addEventListener("change", () => {
+                    const files = input.files;
+                    for (let i = 0; i < files.length; i++) {
+                        queuedImagesArray.push(files[i]);
+                    }
+                    displayQueuedImages();
+                });
+
+                inputArea.addEventListener("drop", (e) => {
+                    e.preventDefault();
+                    const files = e.dataTransfer.files;
+                    for (let i = 0; i < files.length; i++) {
+                        if (!files[i].type.match("image")) continue;
+                        if (queuedImagesArray.every(image => image.name !== files[i].name)) {
+                            queuedImagesArray.push(files[i]);
+                        }
+                    }
+                    displayQueuedImages();
+                })
+
+                function displayQueuedImages() {
+                    let images = "";
+                    queuedImagesArray.forEach((image, index) => {
+                        images += `<div class="image">
+                                <img src="${URL.createObjectURL(image)}">
+                                <span onclick="deleteQueuedImages(${index})">&times;</span>
+                            </div>`;
+                    })
+                    queuedImages.innerHTML = images;
+                }
+
+                function deleteQueuedImages(index) {
+                    queuedImagesArray.splice(index, 1);
+                    displayQueuedImages();
+                }
+
+                let messageDiv = document.querySelector(".message p")
+
+                queued.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    if (queuedImagesArray.length == 0) {
+                        messageDiv.textContent = "Upload images before submitting."
+                        return
+                    }
+
+                    try {
+                        let response = await fetch('/upload', {
+                            method: 'POST',
+                            body: new FormData(queued)
+                        });
+
+                        let data = await response.json();
+                        queuedImagesArray.splice(0, queuedImagesArray.length)
+                        displayQueuedImages()
+
+                        if (data.message) {
+                            messageDiv.textContent = data.message;
+                        } else if (data.error) {
+                            messageDiv.textContent = data.error;
+                        } else {
+                            messageDiv.textContent = 'Unknown response';
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        messageDiv.textContent = 'An error occurred while processing your request.';
+                    }
+                });
+
+                searchFormBar.addEventListener("input", async (e) => {
+                    e.preventDefault();
+                    try {
+                        let response = await fetch('/upload', {
+                            method: 'POST',
+                            body: new FormData(searchForm)
+                        });
+
+                        let data = await response.json()
+
+                        if (data.error) {
+                            displaySearchImagesDiv.textContent = data.error
+                        }
+                        else {
+                            let imagesHTML = "";
+                            data.images.forEach((imageData, index) => {
+                                let img = new Image();
+                                img.src = `data:image/jpeg;base64,${imageData.image_data}`;
+                                img.alt = `Image ${index + 1}`;
+                                img.classList.add("searched-image");
+                                imagesHTML += `<div class="image">
+                                <img src="${img.src}" alt="${img.alt}">
+                            </div>`;
+                            });
+
+                            displaySearchImagesDiv.innerHTML = imagesHTML;
+
+                            let image_from_search = document.querySelectorAll('.searched_images_returned .image img')
+
+                            image_from_search.forEach(image => image.addEventListener("click", (e) => {
+                                selectImagesArray.push(e.target)
+
+                                displaySelectedImages()
+                            }))
+
+                        }
+
+
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                })
+
+                function displaySelectedImages() {
+                    let images = "";
+                    let durationHTML = "";
+                    selectImagesArray.forEach((image, index) => {
+                        images += `<div class="image">
+                                <img src="${image.src}">
+                            </div>`;
+
+                        durationHTML += `<div class="durationset">
+                                        <h3>Enter duration for Image ${index + 1}:</h3>
+                                        <select>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                    </div>
+                                    <br>`
+
+                    });
+
+                    durationDiv.innerHTML = durationHTML;
+
+                    displaySelectedImagesDiv.innerHTML = images;
+                }
+
+                previewButton.addEventListener("click", () => {
+                    sendToFlaskAndReceivePreview(selectImagesArray);
+                });
+
+                async function sendToFlaskAndReceivePreview(selected_images) {
+                    try {
+                        let formData = new FormData()
+                        let transition = document.querySelector('.transitionoptions select')
+                        let quality = document.querySelector('.quality select')
+                        let durations = document.querySelectorAll('.duration_for_each .durationset select')
+                        let selectedAudios = document.querySelectorAll('.musicselect input[type="checkbox"]:checked');
+                        let selectedAudiosDuration = document.querySelectorAll('.audioparent .durationset select')
+                        selectedAudios.forEach(audio => {
+                            formData.append('audio', audio.value);
+                        });
+
+                        selectedAudiosDuration.forEach(duration => {
+                            formData.append('audioduration', duration.value);
+                        })
+
+                        durations.forEach(duration => {
+                            formData.append('duration', duration.value)
+                        })
+
+                        selected_images.forEach(function (image) {
+                            formData.append(`imagesSelected`, image.src);
+                        });
+
+                        formData.append('transition', transition.value)
+                        formData.append('quality', quality.value)
+                        console.log(transition.value)
+                        console.log(quality.value)
+                        console.log(durations)
+                        console.log(selectedAudios)
+                        console.log(selectedAudiosDuration)
+
+                        let response = await fetch('/upload', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        let data = await response.json()
+
+                        if (data.message) {
+                            setTimeout(function () {
+                                location.reload(true);                                 
+                            }, 3000);    
+                                                    
+                            let video = document.querySelector('video')
+                            video.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        else if (data.error) {
+                            serverMessage.textContent = data.error
+                        }
+                        else {
+                            serverMessage.textContent = "Unknown response"
+                        }
+                    }
+                    catch (error) {
+                        serverMessage.textContent = error
+                    }
+                }
+
+                let downloadButton = document.getElementById('downloadvid');
+
+                downloadButton.addEventListener('click', function () {
+                    var a = document.createElement('a');
+                    a.href = video.src;
+                    a.download = 'video.mp4';
+
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                });
+
+                window.addEventListener('keydown',function(e) {
+                    if (e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
+                        if (e.target.nodeName=='INPUT' && e.target.type=='text') {
+                            e.preventDefault();
+                            return false;
+                        }
+                    }
+                }, true);
+
+                const video = document.querySelector("video");
+                const fullscreen = document.querySelector(".fullscreen-btn");
+                const playPause = document.querySelector(".play-pause");
+                const volume = document.querySelector(".volume");
+                const currentTime = document.querySelector(".current-time");
+                const duration = document.querySelector(".duration");
+                const buffer = document.querySelector(".buffer");
+                const totalDuration = document.querySelector(".total-duration");
+                const currentDuration = document.querySelector(".current-duration");
+                const controls = document.querySelector(".controls");
+                const videoContainer = document.querySelector(".video-container");
+                const currentVol = document.querySelector(".current-vol");
+                const totalVol = document.querySelector(".max-vol");
+                const mainState = document.querySelector(".main-state");
+                const muteUnmute = document.querySelector(".mute-unmute");
+                const forward = document.querySelector(".forward");
+                const backward = document.querySelector(".backward");
+                const hoverTime = document.querySelector(".hover-time");
+                const hoverDuration = document.querySelector(".hover-duration");
+                const loader = document.querySelector(".custom-loader");
+
+                let isPlaying = false,
+                    mouseDownProgress = false,
+                    mouseDownVol = false,
+                    isCursorOnControls = false,
+                    muted = false,
+                    timeout,
+                    volumeVal = 1,
+                    mouseOverDuration = false,
+                    touchClientX = 0,
+                    touchPastDurationWidth = 0,
+                    touchStartTime = 0;
+
+                currentVol.style.width = volumeVal * 100 + "%";
+
+                // Video Event Listeners
+                video.addEventListener("loadedmetadata", canPlayInit);
+                video.addEventListener("play", play);
+                video.addEventListener("pause", pause);
+                video.addEventListener("progress", handleProgress);
+                video.addEventListener("waiting", handleWaiting);
+                video.addEventListener("playing", handlePlaying);
+
+                document.addEventListener("keydown", handleShorthand);
+                fullscreen.addEventListener("click", toggleFullscreen);
+
+                playPause.addEventListener("click", (e) => {
+                    if (!isPlaying) {
+                        play();
+                    } else {
+                        pause();
+                    }
+                });
+
+                duration.addEventListener("click", navigate);
+
+                duration.addEventListener("mousedown", (e) => {
+                    mouseDownProgress = true;
+                    navigate(e);
+                });
+
+                totalVol.addEventListener("mousedown", (e) => {
+                    mouseDownVol = true;
+                    handleVolume(e);
+                });
+
+                document.addEventListener("mouseup", (e) => {
+                    mouseDownProgress = false;
+                    mouseDownVol = false;
+                });
+
+                document.addEventListener("mousemove", handleMousemove);
+
+                duration.addEventListener("mouseenter", (e) => {
+                    mouseOverDuration = true;
+                });
+                duration.addEventListener("mouseleave", (e) => {
+                    mouseOverDuration = false;
+                    hoverTime.style.width = 0;
+                    hoverDuration.innerHTML = "";
+                });
+
+                videoContainer.addEventListener("click", toggleMainState);
+                videoContainer.addEventListener("fullscreenchange", () => {
+                    videoContainer.classList.toggle("fullscreen", document.fullscreenElement);
+                });
+                videoContainer.addEventListener("mouseleave", hideControls);
+                videoContainer.addEventListener("mousemove", (e) => {
+                    controls.classList.add("show-controls");
+                    hideControls();
+                });
+                videoContainer.addEventListener("touchstart", (e) => {
+                    controls.classList.add("show-controls");
+                    touchClientX = e.changedTouches[0].clientX;
+                    const currentTimeRect = currentTime.getBoundingClientRect();
+                    touchPastDurationWidth = currentTimeRect.width;
+                    touchStartTime = e.timeStamp;
+                });
+                videoContainer.addEventListener("touchend", () => {
+                    hideControls();
+                    touchClientX = 0;
+                    touchPastDurationWidth = 0;
+                    touchStartTime = 0;
+                });
+                videoContainer.addEventListener("touchmove", handleTouchNavigate);
+
+                controls.addEventListener("mouseenter", (e) => {
+                    controls.classList.add("show-controls");
+                    isCursorOnControls = true;
+                });
+
+                controls.addEventListener("mouseleave", (e) => {
+                    isCursorOnControls = false;
+                });
+
+                mainState.addEventListener("click", toggleMainState);
+
+                mainState.addEventListener("animationend", handleMainSateAnimationEnd);
+
+                muteUnmute.addEventListener("click", toggleMuteUnmute);
+
+                muteUnmute.addEventListener("mouseenter", (e) => {
+                    if (!muted) {
+                        totalVol.classList.add("show");
+                    } else {
+                        totalVol.classList.remove("show");
+                    }
+                });
+
+                muteUnmute.addEventListener("mouseleave", (e) => {
+                    if (e.relatedTarget != volume) {
+                        totalVol.classList.remove("show");
+                    }
+                });
+
+                forward.addEventListener("click", handleForward);
+
+                backward.addEventListener("click", handleBackward);
+
+                function canPlayInit() {
+                    totalDuration.innerHTML = showDuration(video.duration);
+                    video.volume = volumeVal;
+                    muted = video.muted;
+                    if (video.paused) {
+                        controls.classList.add("show-controls");
+                        mainState.classList.add("show-state");
+                        handleMainStateIcon(`<ion-icon name="play-outline"></ion-icon>`);
+                    }
+                }
+
+                function play() {
+                    video.play();
+                    isPlaying = true;
+                    playPause.innerHTML = `<ion-icon name="pause-outline"></ion-icon>`;
+                    mainState.classList.remove("show-state");
+                    handleMainStateIcon(`<ion-icon name="pause-outline"></ion-icon>`);
+                }
+
+                video.ontimeupdate = handleProgressBar;
+
+                function handleProgressBar() {
+                    currentTime.style.width = (video.currentTime / video.duration) * 100 + "%";
+                    currentDuration.innerHTML = showDuration(video.currentTime);
+                }
+
+                function pause() {
+                    video.pause();
+                    isPlaying = false;
+                    playPause.innerHTML = `<ion-icon name="play-outline"></ion-icon>`;
+                    controls.classList.add("show-controls");
+                    mainState.classList.add("show-state");
+                    handleMainStateIcon(`<ion-icon name="play-outline"></ion-icon>`);
+                    if (video.ended) {
+                        currentTime.style.width = 100 + "%";
+                    }
+                }
+
+                function handleWaiting() {
+                    loader.style.display = "unset";
+                }
+
+                function handlePlaying() {
+                    loader.style.display = "none";
+                }
+
+                function navigate(e) {
+                    const totalDurationRect = duration.getBoundingClientRect();
+                    const width = Math.min(
+                        Math.max(0, e.clientX - totalDurationRect.x),
+                        totalDurationRect.width
+                    );
+                    currentTime.style.width = (width / totalDurationRect.width) * 100 + "%";
+                    video.currentTime = (width / totalDurationRect.width) * video.duration;
+                }
+
+                function handleTouchNavigate(e) {
+                    hideControls();
+                    if (e.timeStamp - touchStartTime > 500) {
+                        const durationRect = duration.getBoundingClientRect();
+                        const clientX = e.changedTouches[0].clientX;
+                        const value = Math.min(
+                            Math.max(0, touchPastDurationWidth + (clientX - touchClientX) * 0.2),
+                            durationRect.width
+                        );
+                        currentTime.style.width = value + "px";
+                        video.currentTime = (value / durationRect.width) * video.duration;
+                        currentDuration.innerHTML = showDuration(video.currentTime);
+                    }
+                }
+
+                function showDuration(time) {
+                    const hours = Math.floor(time / 60 ** 2);
+                    const min = Math.floor((time / 60) % 60);
+                    const sec = Math.floor(time % 60);
+                    if (hours > 0) {
+                        return `${formatter(hours)}:${formatter(min)}:${formatter(sec)}`;
+                    } else {
+                        return `${formatter(min)}:${formatter(sec)}`;
+                    }
+                }
+
+                function formatter(number) {
+                    return new Intl.NumberFormat({}, { minimumIntegerDigits: 2 }).format(number);
+                }
+
+                function toggleMuteUnmute() {
+                    if (!muted) {
+                        video.volume = 0;
+                        muted = true;
+                        muteUnmute.innerHTML = `<ion-icon name="volume-mute-outline"></ion-icon>`;
+                        handleMainStateIcon(`<ion-icon name="volume-mute-outline"></ion-icon>`);
+                        totalVol.classList.remove("show");
+                    } else {
+                        video.volume = volumeVal;
+                        muted = false;
+                        totalVol.classList.add("show");
+                        handleMainStateIcon(`<ion-icon name="volume-high-outline"></ion-icon>`);
+                        muteUnmute.innerHTML = `<ion-icon name="volume-high-outline"></ion-icon>`;
+                    }
+                }
+
+                function hideControls() {
+                    if (timeout) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(() => {
+                        if (isPlaying && !isCursorOnControls) {
+                            controls.classList.remove("show-controls");
+                        }
+                    }, 1000);
+                }
+
+                function toggleMainState(e) {
+                    e.stopPropagation();
+                    if (!e.path.includes(controls)) {
+                        if (!isPlaying) {
+                            play();
+                        } else {
+                            pause();
+                        }
+                    }
+                }
+
+                function handleVolume(e) {
+                    const totalVolRect = totalVol.getBoundingClientRect();
+                    currentVol.style.width =
+                        Math.min(Math.max(0, e.clientX - totalVolRect.x), totalVolRect.width) +
+                        "px";
+                    volumeVal = Math.min(
+                        Math.max(0, (e.clientX - totalVolRect.x) / totalVolRect.width),
+                        1
+                    );
+                    video.volume = volumeVal;
+                }
+
+                function handleProgress() {
+                    if (!video.buffered || !video.buffered.length) {
+                        return;
+                    }
+                    const width = (video.buffered.end(0) / video.duration) * 100 + "%";
+                    buffer.style.width = width;
+                }
+
+                function toggleFullscreen() {
+                    if (!document.fullscreenElement) {
+                        videoContainer.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                }
+
+                function handleMousemove(e) {
+                    if (mouseDownProgress) {
+                        e.preventDefault();
+                        navigate(e);
+                    }
+                    if (mouseDownVol) {
+                        handleVolume(e);
+                    }
+                    if (mouseOverDuration) {
+                        const rect = duration.getBoundingClientRect();
+                        const width = Math.min(Math.max(0, e.clientX - rect.x), rect.width);
+                        const percent = (width / rect.width) * 100;
+                        hoverTime.style.width = width + "px";
+                        hoverDuration.innerHTML = showDuration((video.duration / 100) * percent);
+                    }
+                }
+
+                function handleForward() {
+                    video.currentTime += 5;
+                    handleProgressBar();
+                }
+
+                function handleBackward() {
+                    video.currentTime -= 5;
+                    handleProgressBar();
+                }
+
+                function handleMainStateIcon(icon) {
+                    mainState.innerHTML = icon;
+                }
+
+                function handleMainSateAnimationEnd() {
+                    if (!isPlaying) {
+                        mainState.innerHTML = `<ion-icon name="play-outline"></ion-icon>`;
+                    }
+                }
+
+                function handleShorthand(e) {
+                    const tagName = document.activeElement.tagName.toLowerCase();
+                    if (tagName === "input") return;
+                    if (e.key.match(/[0-9]/gi)) {
+                        video.currentTime = parseInt(parseInt(video.duration / 100) * (parseInt(e.key) * 10));
+                        currentTime.style.width = parseInt(e.key) * 10 + "%";
+                    }
+                    switch (e.key.toLowerCase()) {
+                        case " ":
+                            if (tagName === "button") return;
+                            if (isPlaying) {
+                                video.pause();
+                            } else {
+                                video.play();
+                            }
+                            break;
+                        case "f":
+                            toggleFullscreen();
+                            break;
+                        case "arrowright":
+                            handleForward();
+                            break;
+                        case "arrowleft":
+                            handleBackward();
+                            break;
+                        case "m":
+                            toggleMuteUnmute();
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+
+
+            </script>
+
+</body>
+
+</html>

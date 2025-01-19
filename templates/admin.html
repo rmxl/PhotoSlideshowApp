@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="../static/css/adminpagestyle.css">
+</head>
+<body>
+    <div class="container">
+    <div class="table">
+    <main class="table">
+        <section class="table_header">
+            <h1>User Details</h1>
+        </section>
+        <section class="table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>UserId</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user['Usernumber'] }}</td>
+                        <td>{{ user['Username'] }}</td>
+                        <td>
+                           <p class="status">{{ user['Email'] }}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
